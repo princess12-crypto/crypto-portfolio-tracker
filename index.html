@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Crypto Portfolio Tracker</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>Crypto Portfolio Tracker</h1>
+  <div id="portfolio"></div>
+  <script>
+    async function fetchPrices() {
+      const res = await fetch("https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum&vs_currencies=usd");
+      const data = await res.json();
+      document.getElementById("portfolio").innerHTML = `
+        <p>BTC: $${data.bitcoin.usd}</p>
+        <p>ETH: $${data.ethereum.usd}</p>
+      `;
+    }
+    fetchPrices();
+  </script>
+</body>
+</html>
